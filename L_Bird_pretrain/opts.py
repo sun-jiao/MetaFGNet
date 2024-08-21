@@ -27,6 +27,7 @@ def opts():
     # Architecture
     parser.add_argument('--arch', type=str, default='resnet34', help='Model name')
     parser.add_argument('--pretrain', action='store_true', help='whether using pretrained model')
+    parser.add_argument('--freeze', action='store_true', help='whether using pretrained model')
     parser.add_argument('--newfc', action='store_true', help='whether initialize the classifier')
     parser.add_argument('--numclass_old', type=int, default=1000, help='class Number of the pretrained model')
     parser.add_argument('--numclass_new', type=int, default=10320, help='class Number of new model to be trained or fine-tuned')

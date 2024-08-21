@@ -191,6 +191,13 @@ def resnet34(pretrained=False,args=1):
     elif pretrained:
         print('begin to load the ImageNet pretrained model')
         model.load_state_dict(model_zoo.load_url(model_urls['resnet34']))
+
+    if args.freeze:
+        for param in model.parameters():
+            param.requires_grad = False
+        for param in model.fc.parameters():
+            param.requires_grad = True
+
     if args.newfc:
         num_of_feature_map = model.fc.in_features
         print('the classifier parameters is going to be re-inilize')
