@@ -22,9 +22,20 @@ def is_image_file(filename):
 
 
 def find_classes(dir):
+    """
+    original version:
     classes = [d for d in os.listdir(dir) if os.path.isdir(os.path.join(dir, d))]
     classes.sort()
     class_to_idx = {classes[i]: i for i in range(len(classes))}
+
+    new version is designed for DongNiao DIB-10K, in which each class has a number prefix.
+    """
+
+    class_to_idx = {d.split('.', 1)[1]: int(d.split('.')[0]) for d in os.listdir(dir) if
+                    os.path.isdir(os.path.join(dir, d))}
+    classes = [d.split('.', 1)[1] for d in os.listdir(dir) if os.path.isdir(os.path.join(dir, d))]
+    classes.sort()
+
     return classes, class_to_idx
 
 

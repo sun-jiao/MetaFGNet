@@ -1,5 +1,4 @@
 import torch.nn as nn
-from torch.legacy import nn as torchnn
 import copy
 import math
 import torch.utils.model_zoo as model_zoo

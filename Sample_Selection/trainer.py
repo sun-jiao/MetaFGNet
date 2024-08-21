@@ -1,9 +1,11 @@
-import time
-import torch
 import os
+import time
+
+import torch
 import torch.nn as nn
+
+
 # from data.prepare_data_for_path import generate_dataset_new
-import ipdb
 
 
 def train(train_loader, model_source, model_target, epoch, args):
@@ -30,7 +32,7 @@ def train(train_loader, model_source, model_target, epoch, args):
         batch_paths = batch[0]
         input = batch[1]
         target = batch[2]
-        target = target.cuda(async=True)
+        target = target.cuda(non_blocking=True)
         # ipdb.set_trace() first batch target: all 0
         input_var = torch.autograd.Variable(input, volatile=True)
         # compute output
@@ -179,7 +181,7 @@ def validate(val_loader, model, criterion, epoch, args):
 
     end = time.time()
     for i, (input, target) in enumerate(val_loader):
-        target = target.cuda(async=True)
+        target = target.cuda(non_blocking=True)
         input_var = torch.autograd.Variable(input, volatile=True)
         target_var = torch.autograd.Variable(target, volatile=True)
 

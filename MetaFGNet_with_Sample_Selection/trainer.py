@@ -2,7 +2,6 @@ import time
 import torch
 import os
 import copy
-import ipdb
 
 
 def train(train_loader_source, train_loader_source_batch, train_loader_target, train_loader_target_batch, model_source, model_target, criterion, optimizer, epoch, args, meta_train_lr):
@@ -29,7 +28,7 @@ def train(train_loader_source, train_loader_source_batch, train_loader_target, t
         except StopIteration:
             train_loader_source_batch = enumerate(train_loader_source)
             (input_source, target_source) = train_loader_source_batch.__next__()[1]
-        target_source = target_source.cuda(async=True)
+        target_source = target_source.cuda(non_blocking=True)
         input_source_var = torch.autograd.Variable(input_source)
         target_source_var = torch.autograd.Variable(target_source)
 
@@ -51,10 +50,10 @@ def train(train_loader_source, train_loader_source_batch, train_loader_target, t
         (input_target_mtrain, target_target_mtrain) = temp_mtrain[1]
 
     data_time.update(time.time() - end)
-    target_target_train = target_target_train.cuda(async=True)
+    target_target_train = target_target_train.cuda(non_blocking=True)
     input_target_train_var = torch.autograd.Variable(input_target_train)
     target_target_train_var = torch.autograd.Variable(target_target_train)
-    target_target_mtrain = target_target_mtrain.cuda(async=True)
+    target_target_mtrain = target_target_mtrain.cuda(non_blocking=True)
     input_target_mtrain_var = torch.autograd.Variable(input_target_mtrain)
     target_target_mtrain_var = torch.autograd.Variable(target_target_mtrain)
 
@@ -318,7 +317,7 @@ def validate(val_loader_source, val_loader_target, model_source, model_target, c
     if val_loader_source:
         for i, (input_source, target_source) in enumerate(val_loader_source):  # the iterarion in the source dataset.
             data_time.update(time.time() - end)
-            target_source = target_source.cuda(async=True)
+            target_source = target_source.cuda(non_blocking=True)
             input_var = torch.autograd.Variable(input_source, volatile=True)  # volatile is fast in the evaluate model.
             target_var_source = torch.autograd.Variable(target_source, volatile=True)
             output_source = model_source(input_var)
@@ -345,7 +344,7 @@ def validate(val_loader_source, val_loader_target, model_source, model_target, c
 
     for i, (input_target, target_target) in enumerate(val_loader_target):  # the iterarion in the source dataset.
         data_time.update(time.time() - end)
-        target_target = target_target.cuda(async=True)
+        target_target = target_target.cuda(non_blocking=True)
         input_var = torch.autograd.Variable(input_target, volatile=True)  # volatile is fast in the evaluate model.
         target_var_target = torch.autograd.Variable(target_target, volatile=True)
         output_target = model_target(input_var)

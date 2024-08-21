@@ -1,5 +1,4 @@
 import torch.nn as nn
-from torch.legacy import nn as torchnn
 import copy
 import math
 import torch.utils.model_zoo as model_zoo
@@ -314,4 +313,4 @@ def resnet(args, pretrained=False, **kwargs):
     elif args.arch == 'resnet152':
         return resnet152(pretrained, args)
     else:
-        raise ValueError('Unrecognized model architecture', arch)
+        raise ValueError('Unrecognized model architecture', args.arch)

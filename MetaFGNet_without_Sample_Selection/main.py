@@ -21,7 +21,6 @@ from trainer import train  # For the training process
 from trainer import validate  # For the validate (test) process
 from opts import opts  # The options for the project
 from data.prepare_data import generate_dataloader  # Prepare the data and dataloader
-import ipdb
 
 best_prec1 = 0
 

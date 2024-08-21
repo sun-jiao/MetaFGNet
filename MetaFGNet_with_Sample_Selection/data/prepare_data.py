@@ -3,7 +3,7 @@ import shutil
 import torch
 import torchvision.transforms as transforms
 # import torchvision.datasets as datasets
-from data.folder_new import ImageFolder_new
+from folder_new import ImageFolder_new
 
 def split_train_test_images(data_dir):
     #data_dir = '/xxx/CUB_200_2011/'

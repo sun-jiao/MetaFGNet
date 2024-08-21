@@ -1,20 +1,13 @@
 # -*- coding: utf-8 -*-
+import os
+import queue
 import subprocess
-import numpy as np
-import torch
-import argparse
 import threading
 import time
-import queue
-import os
-import shutil
-import requests
+
+import torch
 # from HTMLParser import HTMLParser
-import re
 import urllib3
-from PIL import Image
-import copy
-import ipdb
 
 urllib3.disable_warnings()
 http = urllib3.ProxyManager('http://127.0.0.1:8123/')

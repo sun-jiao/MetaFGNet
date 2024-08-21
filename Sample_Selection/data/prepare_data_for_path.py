@@ -1,7 +1,7 @@
 import os
 import torch
 import torchvision.transforms as transforms
-from data.folder_new import ImageFolder_new
+from folder_new import ImageFolder_new
 def generate_dataset_new(args):
     # Data loading code
     # print(args.data_path)

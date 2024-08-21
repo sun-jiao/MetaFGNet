@@ -21,7 +21,7 @@ from selectImage_multiprocess import selected_images_multiprocess
 from opts import opts  # The options for the project
 from data.prepare_data import generate_dataloader  # Prepare the data and dataloader
 from models.resnet import resnet  # The model construction
-import ipdb
+
 best_prec1 = 0
 
 def main():

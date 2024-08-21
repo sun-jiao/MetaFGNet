@@ -183,7 +183,7 @@ def resnet34(pretrained=False,args=1):
         print('load the pretrained model', args.pretrained_model)
         checkpoint = torch.load(args.pretrained_model)
         state_dict = checkpoint['state_dict']
-        new_state_dict = OrderndDict()   
+        new_state_dict = OrderedDict()
         for k, v in state_dict.items():
             name = k[7:]
             new_state_dict[name] = v
