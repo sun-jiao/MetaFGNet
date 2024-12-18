@@ -31,7 +31,7 @@ def find_classes(dir):
     new version is designed for DongNiao DIB-10K, in which each class has a number prefix.
     """
 
-    class_to_idx = {d.split('.', 1)[1]: int(d.split('.')[0]) for d in os.listdir(dir) if
+    class_to_idx = {d: int(d.split('.')[0]) for d in os.listdir(dir) if
                     os.path.isdir(os.path.join(dir, d))}
     classes = [d.split('.', 1)[1] for d in os.listdir(dir) if os.path.isdir(os.path.join(dir, d))]
     classes.sort()
