@@ -8,7 +8,7 @@ def opts():
                         help='Root of the data set')
     parser.add_argument('--pretrained_model', type=str, default='',
                         help='the pretrained modelp')
-    parser.add_argument('--dataset', type=str, choices=['l-bird', 'cub200'],
+    parser.add_argument('--dataset', type=str, choices=['l-bird', 'cub200', 'dongniao'],
                         help='choose between l-bird/cub200')
     # Optimization options
     parser.add_argument('--epochs', '-e', type=int, default=161, help='Number of epochs to train')
